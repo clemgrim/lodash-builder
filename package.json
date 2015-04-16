@@ -1,6 +1,6 @@
 {
   "name": "lodash-builder",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "description": "Module that creates a custom build of lodash library",
   "repository:" {
   	"type": "git",
