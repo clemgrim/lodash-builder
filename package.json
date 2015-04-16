@@ -2,6 +2,10 @@
   "name": "lodash-builder",
   "version": "1.0.0",
   "description": "Module that creates a custom build of lodash library",
+  "repository:" {
+  	"type": "git",
+  	"url": "https://gitlab.com/clemgrim/lodash-builder.git"
+  },
   "main": "index.js",
   "scripts": {
     "test": "node test",
