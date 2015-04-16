@@ -1,0 +1,17 @@
+{
+  "name": "lodash-builder",
+  "version": "1.0.0",
+  "description": "Module that creates a custom build of lodash library",
+  "main": "index.js",
+  "scripts": {
+    "test": "node test",
+    "build": "npm install -g ."
+  },
+  "author": "Clément Grimault <clement.grimault@agencetexto.com> (http://agence-texto.fr/)",
+  "license": "MIT",
+  "dependencies": {
+    "chalk": "^1.0.0",
+    "lodash": "^3.6.0",
+    "lodash-cli": "^3.6.0"
+  }
+}
