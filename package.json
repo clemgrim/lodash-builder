@@ -2,7 +2,7 @@
   "name": "lodash-builder",
   "version": "1.0.1",
   "description": "Module that creates a custom build of lodash library",
-  "repository:" {
+  "repository": {
   	"type": "git",
   	"url": "https://gitlab.com/clemgrim/lodash-builder.git"
   },
