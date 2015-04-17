@@ -6,7 +6,8 @@ function build (config, cb) {
 	var options = config.type || 'compat',
 		minify = config.minify ? ' -p' : ' -d',
 		output = config.dest || __dirname + '/lodash.js',
-		silent = !!config.silent;
+		silent = !!config.silent,
+		cb	   = cb || _.noop;
 	
 	options += minify;
 	
@@ -36,11 +37,11 @@ function build (config, cb) {
 		maxBuffer: 1024 * 500,
 	}, function (err, stdout, stderr) {
 		if (err) {
-			throw new Error(err);
+			cb(err);return;
 		}
 		
 		if (stderr) {
-			throw new Error(stderr);
+			cb(stderr);return;
 		}
 		
 		if (!silent) {
@@ -48,9 +49,7 @@ function build (config, cb) {
 			process.stdout.write('\n');
 		}
 		
-		if (_.isFunction(cb)) {
-			cb();
-		}
+		cb(null, output);
 	});
 }
 
