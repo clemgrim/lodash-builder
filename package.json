@@ -3,19 +3,21 @@
   "version": "1.0.1",
   "description": "Module that creates a custom build of lodash library",
   "repository": {
-  	"type": "git",
-  	"url": "https://gitlab.com/clemgrim/lodash-builder.git"
+    "type": "git",
+    "url": "https://gitlab.com/clemgrim/lodash-builder.git"
   },
   "main": "index.js",
   "scripts": {
     "test": "node test",
-    "build": "npm install -g ."
+    "build": "npm install -g .",
+    "postinstall": "node init.js"
   },
   "author": "Clément Grimault <clement.grimault@agencetexto.com> (http://agence-texto.fr/)",
   "license": "MIT",
   "dependencies": {
     "chalk": "^1.0.0",
     "lodash": "^3.6.0",
-    "lodash-cli": "^3.6.0"
+    "lodash-cli": "^3.6.0",
+    "q": "^1.4.1"
   }
 }

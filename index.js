@@ -1,13 +1,16 @@
 var chalk		= require('chalk'),
 	exec		= require('child_process').exec,
-	_			= require('lodash');
+	_			= require('lodash'),
+	fs			= require('fs'),
+	Q			= require('q');
 
 function build (config, cb) {
 	var options = config.type || 'compat',
-		minify = config.minify ? ' -p' : ' -d',
-		output = config.dest || __dirname + '/lodash.js',
-		silent = !!config.silent,
-		cb	   = cb || _.noop;
+		minify  = config.minify ? ' -p' : ' -d',
+		output  = config.dest || __dirname + '/lodash.js',
+		silent  = !!config.silent,
+		cb	    = cb || _.noop,
+		statFile= config.minify ? __dirname + '/lodash.min.js' : __dirname + '/lodash.js';
 	
 	options += minify;
 	
@@ -49,7 +52,18 @@ function build (config, cb) {
 			process.stdout.write('\n');
 		}
 		
-		cb(null, output);
+		Q.all([Q.nfcall(fs.stat, statFile), Q.nfcall(fs.stat, output)])
+			.then(function (stats) {
+				var stats = {
+					size: stats[0].size - stats[1].size,
+					percent:  (stats[0].size - stats[1].size) / stats[0].size * 100
+				};
+				
+				cb(null, output, stats);
+			}, function () {
+				console.log('err');
+				cb(null, output, {});
+			});
 	});
 }
 
