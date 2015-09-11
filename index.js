@@ -35,8 +35,9 @@ function build (config, cb) {
 	
 	options += ' -s -o ' + output;
 	
-	exec('lodash ' + options, {
-		cwd: __dirname + '/node_modules/lodash-cli/bin/',
+	var cmd = 'node ' + __dirname + '/node_modules/lodash-cli/bin/lodash ';
+	
+	exec(cmd + options, {
 		maxBuffer: 1024 * 500,
 	}, function (err, stdout, stderr) {
 		if (err) {
